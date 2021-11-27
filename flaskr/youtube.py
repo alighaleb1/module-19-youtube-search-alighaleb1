@@ -1,4 +1,4 @@
-import config
+from . import config
 from googleapiclient.discovery import build
 
 DEVELOPER_KEY = config.API_KEY
@@ -17,11 +17,10 @@ def youtube_search(query_term, max_result_number=2):
     results =[]
     for item in search_response["items"]:
         results.append({
-            "id": item["snippet"]["title"]
+            "id": item["id"],
+            "title": item["snippet"]["title"]
         })
         return results
 
-if __name__ == "__main__":
-    results = youtube_search("basketball", 1)
-    print(results)
+
     
